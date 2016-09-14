@@ -1,0 +1,52 @@
+﻿<!-- Snowball Animation -->
+<div id="snowballBig" class="snowballBig" ng-init="startAnimation()"></div>
+
+<div class="welcomeDialog" ng-show="showDialog">
+    <!-- Welcome Dialogs -->
+    <div class="contentContainer">
+        <div class="contentlogo" ng-show="showLogo"></div>
+        <span ng-show="loading" class="loading gothamBold">Loading...</span>
+        <!-- Welcome Page -->
+        <div class="introContent" ng-show="intro1">
+            <p class="standartText gothamMedium centered">THROW SOME SNOW. LET OF SOME STEAM</p>
+            <p class="standartText gothamMedium centered">And raise a little money for Charity this Christmas with your old pals from Impero.</p>
+            <a ng-click="btnCommence()" class="btnOrange gothamUltra">LET BATTLE COMMENCE!</a>
+        </div>
+        <!-- How To Page -->
+        <div class="introContent" ng-show="intro2">
+            <!--<p class="standartText gothamMedium">We made this for you as a bit of fun in the Christmas spirit. Because not everyone may be having fun this year, we have also donated &#163;2000 to Medecins Sans Frontieres.</p>-->
+            <p class="howItWorks standartText gothamBold">
+                <span>HOW IT WORKS:</span><br /><br />
+                <span class="green">+10</span> POINTS EVERY TIME YOU HIT SOMEONE<br />
+                <span class="red">-5</span> POINTS EVERY TIME SOMEONE HITS YOU
+            </p>
+            <a ng-click="btnNext()" class="btnOrange gothamUltra">NEXT</a>
+        </div>
+        <!-- Select User -->
+        <div class="loginContent" ng-show="login1">
+            <p class="largeText gothamUltra">
+                START TYPING YOUR NAME AND SELECT FROM THE LIST BELOW TO SEE YOUR CHRISTMAS COSTUME.<br /><br />
+                YOU'LL LOOK GREAT, HONEST.
+            </p>
+            <div class="textboxContainer gothamUltra">
+                <autocomplete ng-model="txtUserName" data="peopleNames" autocomplete-required="ture" attr-placeholder="TYPE YOUR NAME..." attr-class="txtNameSelection gothamUltra" a-submit="onLoginClick()" attr-input-id="autoCompleteUser"></autocomplete>
+            </div>
+            <a class="btnOrange gothamUltra" ng-click="onLoginClick()">DO YOUR WORST</a>
+        </div>
+        <!-- Select Group -->
+        <div class="loginContent" ng-show="loginGroup">
+            <p class="largeText gothamUltra">
+                PLEASE SELECT COMPANY
+            </p>
+            <div class="ddCompanyContainer gothamUltra">
+                <select class="ddCompanySelection gothamMedium" ng-change="onGroupChange()" ng-model="groupSelectedId" ng-options="item.id as item.title for item in groupList | inArray:userGroups:'id'"></select>
+            </div>
+        </div>
+        <!-- Show Character -->
+        <div class="introContent" ng-show="login2">
+            <p class="headerText gothamUltra">YOU LOOK RIDICULOUS!</p>
+            <div class="characterBackground" style="background:url({{characterLook}}) no-repeat 0 0;"></div>
+            <a class="btnOrange gothamUltra" ng-click="btnStartGame()">SHOW ME THE SNOW!</a>
+        </div>
+    </div>
+</div>

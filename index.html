@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" data-ng-app="icerinkApp">
+<head>
+    <title>IMPERO : SNOWTHROW</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
+    <!--[if lt IE 9]>
+    <script type="text/javascript">
+      location.href = "notsupportedbrowser.html";
+    </script>
+    <![endif]-->
+
+    <!-- Mobile Redirection -->
+    <script src="app/js/mobile-detect.min.js"></script>
+    <script type="text/javascript">
+      var md = new MobileDetect(window.navigator.userAgent);
+      if (md.mobile()) location.href = "mobile.html";
+    </script>
+
+    <!-- Style & Fonts -->
+    <!--<link href="//cloud.typography.com/7642092/696348/css/fonts.css" rel="stylesheet" /> || not stable -->
+    <link href="theme/icerink/fonts.css" rel="stylesheet" />
+    <link href="theme/icerink/icerink.css" rel="stylesheet" />
+
+    <!-- 3rd Party Libraries -->
+    <script src="app/js/d3/d3.min.js"></script>
+    <script src="app/js/snow/snowfall.js"></script>
+    <!-- <script src="app/js/jquery-2.1.4.min.js"></script> || Enable Before Using Map Editor -->
+
+    <!-- Angular -->
+    <script src="app/js/angular/angular.min.js"></script>
+    <script src="app/js/angular/angular-route.min.js"></script>
+    <script src="app/js/firebase/firebase.js"></script>
+    <script src="app/js/angular/angularfire.min.js"></script>
+
+    <!-- Application -->
+    <script src="app/js/autocomplete.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/global.js"></script>
+    <script src="app/controllers/welcome.js"></script>
+    <script src="app/controllers/firebaseManager.js"></script>
+    <script src="app/services/services.js"></script>
+    <script src="app/controllers/icerink.js"></script>
+    <script src="app/controllers/Snowball.js"></script>
+    <script src="app/controllers/pathEditorController.js"></script>
+</head>
+<body>
+    <div id="appContainer">
+        <div id="gameBgContainer" ng-class="gameBgContainer">
+            <div class="gameBgClouds"></div>
+            <div class="gameBgMountains">
+                <div id="mountain1" class="mountain1"></div>
+                <div id="mountain2" class="mountain2"></div>
+            </div>
+            <div class="gameBgIcerink"></div>
+        </div>
+        <div data-ng-view></div>
+    </div>
+</body>
+</html>

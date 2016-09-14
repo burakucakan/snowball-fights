@@ -1,0 +1,22 @@
+[
+  {
+    "outputFileName": "theme/icerink/game.css",
+    "inputFiles": [
+      "theme/icerink/fonts.css",
+      "theme/icerink/icerink.css"
+    ]
+  },
+    {
+    "outputFileName": "app/game.js",
+    "inputFiles": [
+      "app/js/autocomplete.js",
+      "app/app.js",
+      "app/global.js", 
+      "app/controllers/welcome.js",
+      "app/controllers/firebaseManager.js",
+      "app/services/services.js",
+      "app/controllers/icerink.js",
+      "app/controllers/Snowball.js"
+    ]
+  }
+]

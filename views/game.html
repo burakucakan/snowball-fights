@@ -1,0 +1,95 @@
+<div id="gameLayout">
+    <div id="trees" class="gameBgTrees"></div>
+    <div class="logo"></div>
+    <div id="icerinkContainer">
+        <!-- User Information -->
+        <div class="uiTop">
+            <div class="currentUserAvatar {{ userCharacter | lowercase }}" style="background-image:url(theme/icerink/img/charBig/{{ userId }}b.jpg);"></div>
+            <div class="userInfo">
+                <div class="currentUserRank gothamUltra">{{ currentRank }}<span>st</span></div>
+                <div class="currentUserName gothamUltra">{{ userName }}</div>
+                <a ng-click="OpenScoreBoard()" class="openScoreboard gothamUltra">SEE FULL SCOREBOARD</a>
+            </div>
+        </div>
+        <!-- Game Area -->
+        <div class="icerinkPositioner">
+            <!-- Skaters -->
+            <div id="skaters" class="skatersContainer"></div>
+            <!-- Icerink -->
+            <div id="svgHitContainer" class="svgHitContainer targetCursor" ng-controller="SnowballController">
+                <!-- Snowball -->
+                <div id="snowball" class="snowball" ng-show="showSnowball"></div>
+                <!-- SVG -->
+                <svg width="1105" height="400" id="gameArea" x="0px" y="0px" ng-click="drawPath($event)">
+                    <!-- Dynamic Snowball Path -->
+                    <path id="snowballPath" class="snowballpath" ng-attr-d="{{ snowpath }}"></path>
+                </svg>
+            </div>
+        </div>
+        <div class="uiFooter">
+            <a ng-click="OpenHowToPlay()" class="btnInfo"></a>
+            <a ng-click="OpenScoreBoard()" class="btnScoreBoard"></a>
+
+            <!-- Notification Area -->
+            <div class="notificationContainer">
+                <div class="notificationPositioner">
+                    <div class="notification" ng-repeat="notification in notifications track by $index">
+                        <div class="notificationContent">
+                            <div class="testcontent">
+                                <span class="point gothamUltra">+10</span><span class="text gothamUltra">Alex</span>
+                            </div>
+                            <!-- Hit By -->
+                            <div class="{{ notification[0] }}">
+                                <span class="point gothamUltra">{{ notification[1] }}</span><span class="text gothamUltra">{{ notification[2] }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="score gothamUltra">{{ score }} POINTS</div>
+        </div>
+    </div>
+</div>
+
+<div class="modalOverlay" ng-show="modalOverlay" ng-click="closeModal()"></div>
+<!-- Modal Here -->
+<div class="scoreModal" ng-show="scoreModal">
+    <div class="logo"></div>
+    <div class="scoreContent gothamMedium">
+        <ul>
+            <li class="scoreHeader">
+                <div class="c1"><br />RANK</div>
+                <div class="c2"><br />NAME</div>
+                <div class="c3">SNOWBALLS<br />HITS</div>
+                <div class="c4">SNOWBALLS<br />TAKEN</div>
+                <div class="c5">TOTAL<br />SCORE</div>
+            </li>
+        </ul>
+        <div class="scoreScroll">
+            <ul>
+                <li ng-repeat="item in leaderboard | orderBy:'-score':reverse" ng-class="getRowClass(item)">
+                    <div class="c1" id="{{ 'uRank-' + item.id }}">{{ $index + 1 }}</div>      
+                    <div class="c2">{{ item.name }}</div>
+                    <div class="c3">{{ item.hit_count }}</div>
+                    <div class="c4">{{ item.get_hit_count }}</div>
+                    <div class="c5">{{ item.score }}</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="howToPlayModal" ng-show="howToPlayModal">
+
+    <div class="howToPlayContent">
+        <div class="contentlogo"></div>
+        <p class="standartText gothamMedium centered">THROW SOME SNOW. LET OF SOME STEAM</p>
+        <p class="standartText gothamMedium centered">And raise a little money for Charity this Christmas with your old pals from Impero.</p>
+        <p class="howItWorks standartText gothamBold">
+            <span>HOW IT WORKS:</span><br /><br />
+            <span class="green">+10</span> POINTS EVERY TIME YOU HIT SOMEONE<br />
+            <span class="red">-5</span> POINTS EVERY TIME SOMEONE HITS YOU
+        </p>
+        <a ng-click="closeModal()" class="btnOrange gothamUltra">RESUME BATTLE</a>
+    </div>
+</div>

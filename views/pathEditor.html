@@ -1,0 +1,30 @@
+﻿<style>
+    body { margin:0; padding:0; }
+    .editorArea { position:relative; width:1100px; height:400px; overflow: hidden; background:url(/theme/icerink/img/editorBg.png) no-repeat 0 0; }
+
+    .point { position:absolute; width:10px; height:10px; background:#ff0000; z-index:99999; -webkit-user-drag:element; }
+    .point:hover { cursor:pointer !important; }
+
+    .demoPath { fill:none; stroke:#ff0000; stroke-width:1px;  }
+
+    .addPoint { position:absolute; top:410px; left:400px; padding:20px; cursor:pointer; background:#ff6a00; color:#fff; z-index:9999; }
+    .drawPath { position:absolute; top:410px; left:550px; padding:20px; cursor:pointer; background:#ff6a00; color:#fff; z-index:9999; }
+    .result { display:block; background:#fff; position:absolute; top:410px; left:700px; padding:20px; width:100px; height:100px; }
+    .svgHitContainer { z-index:100 !important; }
+    .skatersContainer { z-index:120 !important; }
+
+    path { visibility:visible; fill:none; stroke:#ff0000; stroke-width:1px; } 
+</style>
+<div class="editorArea">
+    <div id="skaters" class="skatersContainer">
+        <span class="point" ng-repeat="point in points" data-index="{{$index}}" style="top:{{point[0]}}px;left:{{point[1]}}px;" drag-me></span>
+    </div>
+    <div id="svgHitContainer" class="svgHitContainer">
+        <svg width="1105" height="400" id="gameArea" x="0px" y="0px"></svg>
+    </div>
+</div>
+<a class="addPoint" ng-click="addPoint()">Add Point</a>
+<a class="drawPath" ng-click="drawPath()">Draw Path</a>
+<div class="result" contenteditable="true">
+    <span draggable="false" ng-repeat="point in points">[{{point[1]}},{{point[0]}}],</span>
+</div>
